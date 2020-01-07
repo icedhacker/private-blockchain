@@ -203,7 +203,7 @@ class Blockchain {
         return new Promise(async (resolve, reject) => {
             let index = 0;
             self.chain.forEach(async block => {
-                let isValid = await block.validate();
+            let isValid = await block.validate();
                 if(!isValid){
                     errorLog.push(`Error - Block ${index} - is invalid.`);
                 }
@@ -219,7 +219,6 @@ class Blockchain {
             resolve(errorLog);
         });
     }
-
 }
 
 module.exports.Blockchain = Blockchain;   

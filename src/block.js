@@ -36,13 +36,13 @@ class Block {
      *  Note: to access the class values inside a Promise code you need to create an auxiliary value `let self = this;`
      */
     validate() {
-        let self = this;
+        let deepClone = JSON.parse(JSON.stringify(this));
         return new Promise((resolve, reject) => {
             // Save in auxiliary variable the current block hash
-            let oldHash = self.hash;
-            self.hash = null;
+            let oldHash = this.hash;
+            deepClone.hash = null;
             // Recalculate the hash of the Block
-            let actualHash = SHA256(JSON.stringify(this)).toString();
+            let actualHash = SHA256(JSON.stringify(deepClone)).toString();
             // Comparing if the hashes changed
             // Returning the Block is not valid
             // Returning the Block is valid
